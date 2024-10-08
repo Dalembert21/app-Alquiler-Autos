@@ -3,7 +3,8 @@
 /* Estilos generales para el cuerpo del login */
 .login-body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #6E7F9A, #3E4E71); /* Degradado en tonos azules y grises modernos */
+    background: url('../Imagenes/carro-login.jpg') no-repeat center center fixed; /* Ruta a la imagen de fondo */
+    background-size: cover; /* La imagen cubre toda la pantalla */
     margin: 0;
     padding: 0;
     display: flex;
@@ -21,6 +22,7 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     width: 350px;
     transition: transform 0.3s ease;
+    margin-left: 800px; /* Añade un margen izquierdo para desplazar hacia la derecha */
 }
 
 .login-container:hover {
