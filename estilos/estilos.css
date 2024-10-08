@@ -22,11 +22,29 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     width: 350px;
     transition: transform 0.3s ease;
-    margin-left: 800px; /* Añade un margen izquierdo para desplazar hacia la derecha */
+    margin-left: 800px; /* Ajuste por defecto para pantallas grandes */
 }
 
-.login-container:hover {
-    transform: scale(1.05);
+/* Responsive: Ajustar el contenedor en dispositivos más pequeños */
+@media (max-width: 1024px) {
+    .login-container {
+        margin-left: 400px; /* Ajusta el margen para pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        margin-left: 0; /* Centra el contenedor para pantallas más pequeñas */
+        width: 80%; /* Aumenta el ancho para que sea más flexible */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        margin-left: 0; /* Centra el contenedor */
+        width: 90%; /* Casi todo el ancho de la pantalla en móviles */
+        padding: 2rem 1rem; /* Ajuste del padding en móviles */
+    }
 }
 
 /* Estilos para el título */
