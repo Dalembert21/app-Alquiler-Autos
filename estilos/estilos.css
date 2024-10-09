@@ -133,3 +133,141 @@
     text-decoration: underline;
 }
 /*-------------------FINALIZA EL LOGIN----------------------*/
+
+
+
+/*-------------------INICIA EL REGISTRO----------------------*/
+
+/* Estilos generales para el cuerpo del registro */
+.registrate-body {
+    font-family: 'Poppins', sans-serif;
+    background: url('../Imagenes/carro-registro.jpg') no-repeat center center fixed; /* Ruta a la imagen de fondo */
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-blend-mode: overlay; /* Mezcla de colores suave */
+}
+
+/* Estilos para el contenedor de registro */
+.registrate-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo translúcido */
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    transition: transform 0.3s ease;
+    margin-left: 800px; /* Ajuste por defecto para pantallas grandes */
+}
+
+/* Responsive: Ajustar el contenedor en dispositivos más pequeños */
+@media (max-width: 1024px) {
+    .registrate-container {
+        margin-left: 400px; /* Ajusta el margen para pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .registrate-container {
+        margin-left: 0; /* Centra el contenedor para pantallas más pequeñas */
+        width: 80%; /* Aumenta el ancho para que sea más flexible */
+    }
+}
+
+@media (max-width: 480px) {
+    .registrate-container {
+        margin-left: 0; /* Centra el contenedor */
+        width: 90%; /* Casi todo el ancho de la pantalla en móviles */
+        padding: 2rem 1rem; /* Ajuste del padding en móviles */
+    }
+}
+
+/* Estilos para el título */
+.registrate-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #3E4E71;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registrate-title i {
+    margin-right: 10px;
+    color: #4F5D77;
+    background-color: #D1E1F0;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+/* Estilos para el formulario */
+.registrate-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para las etiquetas */
+.registrate-label {
+    margin-bottom: 0.5rem;
+    color: #4F5D77;
+}
+
+/* Estilos para los campos de entrada */
+.registrate-input-field {
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #F2F2F2;
+    font-size: 1rem;
+    color: #3E4E71;
+    transition: box-shadow 0.3s ease;
+}
+
+.registrate-input-field:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 90, 148, 0.6);
+}
+
+/* Estilos para el botón */
+.registrate-button {
+    padding: 0.8rem;
+    background-color: #4F5D77;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.registrate-button:hover {
+    background-color: #3E4E71;
+}
+
+/* Estilos para el texto del párrafo */
+.registrate-paragraph {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #3E4E71;
+}
+
+/* Estilos para los enlaces */
+.registrate-link {
+    color: #4F5D77;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.registrate-link:hover {
+    color: #3E4E71;
+    text-decoration: underline;
+}
+/*-------------------FINALIZA EL REGISTRO----------------------*/
