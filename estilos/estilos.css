@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 /*-------------------INICIA EL LOGIN----------------------*/
 
 /* Estilos generales para el cuerpo del login */
@@ -271,3 +276,100 @@
     text-decoration: underline;
 }
 /*-------------------FINALIZA EL REGISTRO----------------------*/
+
+/*-------------------- Estilos para el header------------------- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #4F5D77; /* Color del login */
+    color: white;
+    position:relative;
+    margin: 0;
+}
+
+.header-left h1 {
+    margin: 0;
+    color: white;
+    font-size: 2rem;
+}
+
+.header-right ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.header-right ul li {
+    display: inline;
+}
+
+.header-right ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-right ul li a:hover {
+    text-decoration: underline;
+    color: #D1E1F0; /* Mismo color del hover en login */
+}
+
+
+/* Ajustes para eliminar el margen entre el header y la imagen */
+.main-section {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -100px; /* Nuevo ajuste para eliminar espacio */
+}
+
+.referential-image {
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    display: block;
+    object-fit: cover;
+    padding: 0;
+}
+
+
+
+
+.info-content {
+    font-size: 1.2rem;
+    color: #4F5D77; /* Texto en color similar al login */
+}
+
+/* Estilos para el footer */
+.footer-section {
+    text-align: center;
+    padding: 10px;
+    background-color: #4F5D77;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Icono */
+.icono-carro {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+
+
+
