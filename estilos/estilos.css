@@ -83,21 +83,23 @@ body {
     color: #4F5D77;
 }
 
-/* Estilos para los campos de entrada */
+/* Estilos para los campos de entrada del login */
 .login-input-field {
     padding: 0.75rem;
     margin-bottom: 1.5rem;
-    border: none;
+    border: 1px solid #4F5D77; /* Borde con contraste para mejor visibilidad */
     border-radius: 6px;
-    background-color: #F2F2F2;
+    background-color: #F8F9FA; /* Fondo gris claro para mayor visibilidad */
     font-size: 1rem;
     color: #3E4E71;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
+/* Estilos al enfocar el campo de entrada del login */
 .login-input-field:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 90, 148, 0.6);
+    background-color: #FFF; /* Fondo blanco al enfocar */
 }
 
 /* Estilos para el botón */
