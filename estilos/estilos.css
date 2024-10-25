@@ -422,11 +422,12 @@ body {
     font-size: 28px; /* Tamaño del ícono */
     color: #f9b233; /* Color del ícono */
 }
+
 /*-------------------INICIA EL LOGIN----------------------*/
 
 /* Estilos generales para el cuerpo del login */
 .login-body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
     background: url('../Imagenes/carro-login.jpg') no-repeat center center fixed; /* Ruta a la imagen de fondo */
     background-size: cover; /* La imagen cubre toda la pantalla */
     margin: 0;
@@ -476,7 +477,7 @@ body {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2rem;
-    color: #3E4E71;
+    color: #f9b233;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -484,8 +485,8 @@ body {
 
 .login-title i {
     margin-right: 10px;
-    color: #4F5D77;
-    background-color: #D1E1F0;
+    color: #f9b233;
+  
     padding: 0.5rem;
     border-radius: 50%;
 }
@@ -499,18 +500,45 @@ body {
 /* Estilos para las etiquetas */
 .login-label {
     margin-bottom: 0.5rem;
-    color: #4F5D77;
+    color: #f9b233;
 }
+/* Contenedor del formulario de login */
+.login-form-container {
+    width: 400px; /* Ajusta el tamaño del formulario */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative; /* Importante para posicionar el enlace */
+}
+
+/* Estilos para el enlace de "Olvidaste tu contraseña" */
+.forgot-password {
+    position: absolute;
+    top: 10px; /* Ajusta según la necesidad */
+    right: 10px; /* Ajusta según la necesidad */
+    font-size: 14px;
+    color: #f9b233; /* Mismo color que el botón */
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: #d89220; /* Cambia el color al pasar el ratón */
+}
+
+
+
 
 /* Estilos para los campos de entrada del login */
 .login-input-field {
     padding: 0.75rem;
     margin-bottom: 1.5rem;
-    border: 1px solid #4F5D77; /* Borde con contraste para mejor visibilidad */
+    border: 1px solid #f9b233; /* Borde con contraste para mejor visibilidad */
     border-radius: 6px;
     background-color: #F8F9FA; /* Fondo gris claro para mayor visibilidad */
     font-size: 1rem;
-    color: #3E4E71;
+    color: #f9b233;
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
@@ -524,7 +552,7 @@ body {
 /* Estilos para el botón */
 .login-button {
     padding: 0.8rem;
-    background-color: #4F5D77;
+    background-color: #f9b233;
     color: white;
     font-weight: bold;
     border: none;
@@ -543,23 +571,22 @@ body {
     text-align: center;
     margin-top: 1.5rem;
     font-size: 0.9rem;
-    color: #3E4E71;
+    color: #111;
 }
 
 /* Estilos para los enlaces */
 .login-link {
-    color: #4F5D77;
+    color: #f9b233;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .login-link:hover {
-    color: #3E4E71;
+    color: #f9b233;
     text-decoration: underline;
 }
 /*-------------------FINALIZA EL LOGIN----------------------*/
-
 
 /*-------------------INICIA EL REGISTRO----------------------*/
 
