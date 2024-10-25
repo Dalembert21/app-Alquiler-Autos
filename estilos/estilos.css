@@ -147,7 +147,7 @@ body {
 
 /* Estilos generales para el cuerpo del registro */
 .registrate-body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
     background: url('../Imagenes/carro-registro.jpg') no-repeat center center fixed; /* Ruta a la imagen de fondo */
     background-size: cover; /* La imagen cubre toda la pantalla */
     margin: 0;
@@ -167,8 +167,9 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     width: 400px;
     transition: transform 0.3s ease;
-    margin-left: 800px; /* Ajuste por defecto para pantallas grandes */
+    margin: auto; /* Centrar horizontalmente */
 }
+
 
 /* Responsive: Ajustar el contenedor en dispositivos más pequeños */
 @media (max-width: 1024px) {
@@ -197,7 +198,7 @@ body {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2rem;
-    color: #3E4E71;
+    color: #f9b233;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -205,8 +206,8 @@ body {
 
 .registrate-title i {
     margin-right: 10px;
-    color: #4F5D77;
-    background-color: #D1E1F0;
+    color: #f9b233;
+   
     padding: 0.5rem;
     border-radius: 50%;
 }
@@ -220,30 +221,31 @@ body {
 /* Estilos para las etiquetas */
 .registrate-label {
     margin-bottom: 0.5rem;
-    color: #4F5D77;
+    color: #f9b233;
 }
 
 /* Estilos para los campos de entrada */
 .registrate-input-field {
     padding: 0.75rem;
     margin-bottom: 1.5rem;
-    border: none;
+    border: 1px solid #f9b233;
     border-radius: 6px;
-    background-color: #F2F2F2;
+    background-color: #F8F9FA;
     font-size: 1rem;
-    color: #3E4E71;
-    transition: box-shadow 0.3s ease;
+    color: #111;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .registrate-input-field:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 90, 148, 0.6);
+    background-color: #FFF; /* Fondo blanco al enfocar */
 }
 
 /* Estilos para el botón */
 .registrate-button {
     padding: 0.8rem;
-    background-color: #4F5D77;
+    background-color: #f9b233;
     color: white;
     font-weight: bold;
     border: none;
@@ -262,12 +264,12 @@ body {
     text-align: center;
     margin-top: 1.5rem;
     font-size: 0.9rem;
-    color: #3E4E71;
+    color: #111;
 }
 
 /* Estilos para los enlaces */
 .registrate-link {
-    color: #4F5D77;
+    color: #f9b233;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
