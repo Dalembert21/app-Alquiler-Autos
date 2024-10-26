@@ -8,7 +8,6 @@ class ModeloAdministrador {
                 echo json_encode(['mensaje' => 'Faltan datos']);
                 return;
             }
-
             $cedulaEmpleado = $_POST['cedula_Empleado'];
             $nombreEmpleado = $_POST['nombre_Empleado'];
             $apellidoEmpleado = $_POST['apellido_Empleado'];
@@ -23,7 +22,7 @@ class ModeloAdministrador {
             $datos = $con->prepare($sql);
 
             if ($datos->execute([$cedulaEmpleado, $nombreEmpleado, $apellidoEmpleado, $correoEmpleado, $claveEmpleado, $rol])) {
-                echo json_encode(['mensaje' => 'Empleado creado correctamente']);
+                echo json_encode(['mensaje' => 'Empleado creado Correctamente']);
             } else {
                 echo json_encode(['mensaje' => 'Empleado no creado: error al ejecutar la consulta']);
             }
