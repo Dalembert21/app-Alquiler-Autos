@@ -11,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'loginUsuario':
                 Modelo::loginUsuario();
                 break;
+            case 'registrarEmpleado':
+                    ModeloAdministrador::registroEmpleado();
+                    break;
         }
     } else {
         echo json_encode(['mensaje' => 'No se ha especificado ninguna acción']);
