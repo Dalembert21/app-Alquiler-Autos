@@ -11,6 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'loginUsuario':
                 Modelo::loginUsuario();
                 break;
+            case 'recuperarContrasena':
+                    if (isset($_POST['email'])) {
+                        Modelo::recuperarContrasena($_POST['email']);
+                    } else {
+                        echo json_encode(['mensaje' => 'Email no proporcionado']);
+                    }
+                    break;
             case 'registrarEmpleado':
                     ModeloAdministrador::registroEmpleado();
                     break;
