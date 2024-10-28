@@ -886,3 +886,100 @@ body {
 }
 
 /*FINALIZA ESTILOS PARA EL RECUPERAR CONTRA*/
+
+
+/* Estilos de filtros */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: fit-content; /* Ajusta el ancho al contenido */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+
+.filter-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border: 1px solid #f9b233;
+    border-radius: 8px;
+    background-color: #f5f5dc; /* Fondo suave */
+    color: #111;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.filter-item:hover {
+    background-color: #f9b233;
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.filter-item input[type="checkbox"], 
+.filter-item input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #f9b233; /* Color personalizado para el checkbox/radio */
+    transform: scale(1.1);
+}
+
+.filter-item select {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #111;
+    transition: border-color 0.3s ease;
+}
+
+.filter-item select:focus {
+    border-color: #f9b233;
+    outline: none;
+}
+
+.apply-filters-btn {
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #f9b233;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apply-filters-btn:hover {
+    background-color: #f7a723;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo base para el botón */
+.restablecerFiltros {
+    background-color: white; /* Color de fondo */
+    color: #f9b233; /* Color del texto */
+    border: 1px solid #f9b233; /* Borde del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+/* Efecto al pasar el mouse (hover) */
+.restablecerFiltros:hover {
+    background-color: white; /* Color de fondo al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra del botón */
+}
+
+/* Efecto al hacer clic (active) */
+.restablecerFiltros:active {
+    transform: scale(0.95); /* Reduce el tamaño al hacer clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más pequeña al hacer clic */
+}
