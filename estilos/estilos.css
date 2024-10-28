@@ -820,5 +820,69 @@ body {
 }
 
 
+/* Estilos del contenedor de recuperación de contraseña */
+.recover-password-form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
 
+.recover-password-form h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
 
+.recover-password-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.recover-password-form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.recover-password-form button {
+    background-color: #f9b233;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recover-password-form button:hover {
+    background-color: #e5a022;
+}
+
+/* Estilo para el mensaje de respuesta */
+#message {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+.reset-password-input {
+    width: 100%; /* Ajusta a todo el ancho del contenedor */
+    padding: 10px; /* Añade algo de espacio interno */
+    margin-bottom: 20px;
+    font-size: 16px; /* Ajusta el tamaño de la fuente */
+    border: 1px solid #ccc; /* Añade un borde */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+/*FINALIZA ESTILOS PARA EL RECUPERAR CONTRA*/
