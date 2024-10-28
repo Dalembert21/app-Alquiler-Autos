@@ -90,13 +90,13 @@ class Modelo{
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com'; // Servidor SMTP de Gmail
                 $mail->SMTPAuth = true;
-                $mail->Username = 'dalembertbravo2@gmail.com'; // Tu correo de Gmail
-                $mail->Password = 'remjppzatmsxhotj'; // Usa la contraseña de aplicación
+                $mail->Username = 'kevinganan2901@gmail.com'; // Tu correo de Gmail
+                $mail->Password = 'bgunglmzxoiujinv'; // Usa la contraseña de aplicación
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
                 
                 // Configuración del remitente y destinatario
-                $mail->setFrom('dalembertbravo2@gmail.com', 'UTA DRIVE');
+                $mail->setFrom('kevinganan2901@gmail.com', 'UTA DRIVE');
                 $mail->addAddress($email); // El correo de destino
                 // Contenido del correo
                 $mail->isHTML(true);
