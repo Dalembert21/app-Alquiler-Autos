@@ -28,6 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'registrarEmpleado':
                 ModeloAdministrador::registroEmpleado();
                 break;
+            case 'eliminarEmpleado':
+                if (isset($_POST['cedula_Empleado'])) {
+                    ModeloAdministrador::eliminarEmpleado($_POST['cedula_Empleado']);  // Pasa la cédula como argumento
+                } else {
+                    echo json_encode(['mensaje' => 'Cédula del empleado no proporcionada']);
+                }
+                break;
         }
     } else {
         echo json_encode(['mensaje' => 'No se ha especificado ninguna acción']);
