@@ -142,21 +142,30 @@ body {
 
 .card {
     background-color: white;
-    border: 2px solid transparent;
+    border: 2px solid #f9b233;
     border-radius: 8px;
     margin: 15px;
     padding: 20px;
     text-align: center;
     transition: border 0.3s, box-shadow 0.3s;
     width: 300px; /* Ajusta el ancho según sea necesario */
+    height: 400px; /* Ajusta la altura para uniformidad */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden; /* Oculta el contenido que excede el contenedor */
 }
+
+
+
 
 .card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
+    width: 100%;
+    height: 200px; /* Altura específica para las imágenes */
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    border-radius: 8px;
 }
-
 /* Animación de borde al pasar el mouse */
 .card:hover {
     border: 2px solid #f9b233; /* Color del borde al pasar el mouse */
@@ -422,7 +431,6 @@ body {
     font-size: 28px; /* Tamaño del ícono */
     color: #f9b233; /* Color del ícono */
 }
-
 /*-------------------INICIA EL LOGIN----------------------*/
 
 /* Estilos generales para el cuerpo del login */
