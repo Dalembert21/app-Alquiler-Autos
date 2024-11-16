@@ -13,9 +13,8 @@ class ModeloAdministrador {
             $nombreEmpleado = $_POST['nombre_Empleado'];
             $apellidoEmpleado = $_POST['apellido_Empleado'];
             $correoEmpleado = $_POST['correo_Empleado'];
-            $claveEmpleado = $_POST['clave_Empleado'];
-            
-            $rol = 'Empleado';  
+            $claveEmpleado = password_hash($_POST['clave_Empleado'], PASSWORD_DEFAULT);
+            $rol = $_POST['rol'];
             $objetoConexion = new Conexion();
             $con = $objetoConexion->conectar();
         
