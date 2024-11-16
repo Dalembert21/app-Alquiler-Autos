@@ -35,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo json_encode(['mensaje' => 'Cédula del empleado no proporcionada']);
                 }
                 break;
+            case 'editarEmpleado':
+                ModeloAdministrador::editarEmpleado();
+                break;
         }
     } else {
         echo json_encode(['mensaje' => 'No se ha especificado ninguna acción']);
