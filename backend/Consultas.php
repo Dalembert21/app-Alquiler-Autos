@@ -117,6 +117,32 @@ class Modelo{
         }
     }
 
+    public static function resetearContrasena($token, $newPassword) {
+        try {
+            // Conectar a la base de datos
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+    
+            // Verificar el token
+            $sql = "SELECT * FROM usuarios WHERE reset_token = ? AND reset_token_expiration > NOW()";
+            $stmt = $con->prepare($sql);
+            $stmt->execute([$token]);
+    
+            if ($stmt->rowCount() > 0) {
+                // Actualizar la contraseña
+                $sqlUpdate = "UPDATE usuarios SET clave_Registro = ?, reset_token = NULL, reset_token_expiration = NULL WHERE reset_token = ?";
+                $stmtUpdate = $con->prepare($sqlUpdate);
+                $stmtUpdate->execute([$newPassword, $token]);
+    
+                echo json_encode(['mensaje' => 'Contraseña restablecida con éxito']);
+            } else {
+                echo json_encode(['mensaje' => 'Token no válido o expirado']);
+            }
+        } catch (PDOException $e) {
+            echo json_encode(['mensaje' => 'Error al restablecer la contraseña: ' . $e->getMessage()]);
+        }
+    }
+
 
 }
 
