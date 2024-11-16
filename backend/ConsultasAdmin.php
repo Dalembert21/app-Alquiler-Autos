@@ -31,6 +31,25 @@ class ModeloAdministrador {
             echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
         }
     }
+
+    public static function eliminarEmpleado($cedulaEmpleado) {
+        try {
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+            
+            // Consulta SQL para eliminar el empleado
+            $sql = "DELETE FROM empleados WHERE cedula_Empleado = ?";
+            $datos = $con->prepare($sql);
+    
+            if ($datos->execute([$cedulaEmpleado])) {
+                echo json_encode(['mensaje' => 'Empleado eliminado correctamente']);
+            } else {
+                echo json_encode(['mensaje' => 'Error al eliminar el empleado']);
+            }
+        } catch (PDOException $e) {
+            echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }
 
 
