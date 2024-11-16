@@ -50,6 +50,78 @@ class ModeloAdministrador {
             echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
         }
     }
+
+    public static function editarEmpleado() {
+        try {
+            // Verificar que al menos se reciba la cédula para identificar al empleado
+            if (!isset($_POST['cedula_Empleado'])) {
+                echo json_encode(['mensaje' => 'Debe proporcionar la cédula del empleado']);
+                return;
+            }
+        
+            // Recibir los datos enviados por POST
+            $cedulaEmpleado = $_POST['cedula_Empleado'];
+            $nombreEmpleado = isset($_POST['nombre_Empleado']) ? $_POST['nombre_Empleado'] : null;
+            $apellidoEmpleado = isset($_POST['apellido_Empleado']) ? $_POST['apellido_Empleado'] : null;
+            $correoEmpleado = isset($_POST['correo_Empleado']) ? $_POST['correo_Empleado'] : null;
+            $claveEmpleado = isset($_POST['clave_Empleado']) ? $_POST['clave_Empleado'] : null;
+            $rol = isset($_POST['rol']) ? $_POST['rol'] : null;
+        
+            // Establecer la conexión a la base de datos
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+        
+            // Construir la consulta SQL dinámicamente
+            $sql = "UPDATE empleados SET ";
+            $campos = [];
+            $valores = [];
+        
+            if ($nombreEmpleado !== null) {
+                $campos[] = "nombre_Empleado = ?";
+                $valores[] = $nombreEmpleado;
+            }
+            if ($apellidoEmpleado !== null) {
+                $campos[] = "apellido_Empleado = ?";
+                $valores[] = $apellidoEmpleado;
+            }
+            if ($correoEmpleado !== null) {
+                $campos[] = "correo_Empleado = ?";
+                $valores[] = $correoEmpleado;
+            }
+            // Si se recibe una nueva clave, encriptarla antes de actualizar
+            if ($claveEmpleado !== null) {
+                $claveEmpleado = password_hash($claveEmpleado, PASSWORD_DEFAULT); // Encriptar la nueva clave
+                $campos[] = "clave_Empleado = ?";
+                $valores[] = $claveEmpleado;
+            }
+            if ($rol !== null) {
+                $campos[] = "rol = ?";
+                $valores[] = $rol;
+            }
+        
+            // Si no hay campos para actualizar, finalizar
+            if (empty($campos)) {
+                echo json_encode(['mensaje' => 'No se proporcionaron datos para actualizar']);
+                return;
+            }
+        
+            // Agregar la condición de cédula al final
+            $sql .= implode(", ", $campos) . " WHERE cedula_Empleado = ?";
+            $valores[] = $cedulaEmpleado;
+        
+            // Preparar y ejecutar la consulta
+            $datos = $con->prepare($sql);
+            if ($datos->execute($valores)) {
+                echo json_encode(['mensaje' => 'Empleado actualizado correctamente']);
+            } else {
+                echo json_encode(['mensaje' => 'Empleado no actualizado: error al ejecutar la consulta']);
+            }
+        
+        } catch (PDOException $e) {
+            // Manejo de errores
+            echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }
 
 
