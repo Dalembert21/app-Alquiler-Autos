@@ -240,6 +240,39 @@ $("#registroEmpleado").on("submit", function (event) {
      });
  }
 
+
+ // Función para abrir el modal y cargar los datos para edición
+ $(document).on("click", ".editar-btn", function () {
+        var cedula = $(this).data("id");
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/app-Alquiler-Autos/backend/apiRest.php",
+            data: { accion: "obtenerEmpleado", cedula_Empleado: cedula },
+            dataType: "json",
+            success: function (empleado) {
+                if (empleado) {
+                    $("#cedulaEmpleado").val(empleado.cedula_Empleado).prop("readonly", true);
+                    $("#nombreEmpleado").val(empleado.nombre_Empleado);
+                    $("#apellidoEmpleado").val(empleado.apellido_Empleado);
+                    $("#correoEmpleado").val(empleado.correo_Empleado);
+                  //  $("#contrasenaEmpleado").val(empleado.clave_Empleado);
+                  $("#contrasenaEmpleado").val("");
+                  cargarRoles();
+                    $("#rol").val(empleado.rol);
+                    $("#registroEmpleado").data("accion", "editar");
+                    $(".registrate-button").text("Actualizar Datos");
+                    $("#modalEmpleado").show();
+                } else {
+                    alert("No se encontraron los datos del empleado.");
+                }
+            },
+            error: function (xhr) {
+                console.error("Error al cargar los datos del empleado:", xhr.responseText);
+            },
+        });
+    });
+    
+
     });
       
 </script>
