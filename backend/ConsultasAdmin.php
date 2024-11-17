@@ -199,6 +199,48 @@ class ModeloAdministrador {
             echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
         }
     }
+
+    public static function verificarEmpleado() {
+        try {
+            // Verificar que se reciba la cédula y la contraseña desde el formulario
+            if (!isset($_POST['cedula_Empleado']) || !isset($_POST['clave_Empleado'])) {
+                echo json_encode(['mensaje' => 'Debe proporcionar la cédula y la contraseña']);
+                return;
+            }
+    
+            $cedulaEmpleado = $_POST['cedula_Empleado'];
+            $claveEmpleado = $_POST['clave_Empleado'];
+    
+            // Establecer la conexión a la base de datos
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+    
+            // Consulta SQL para obtener el empleado por cédula
+            $sql = "SELECT cedula_Empleado, nombre_Empleado, apellido_Empleado, correo_Empleado, clave_Empleado, rol 
+                    FROM empleados WHERE cedula_Empleado = ?";
+    
+            $datos = $con->prepare($sql);
+            $datos->execute([$cedulaEmpleado]);
+    
+            // Verificar si se encontró el empleado
+            $empleado = $datos->fetch(PDO::FETCH_ASSOC);
+    
+            if ($empleado) {
+                // Verificar si la contraseña proporcionada coincide con el hash almacenado
+                if (password_verify($claveEmpleado, $empleado['clave_Empleado'])) {
+                    // Contraseña correcta
+                    echo json_encode(['mensaje' => 'Empleado verificado correctamente', 'empleado' => $empleado]);
+                } else {
+                    // Contraseña incorrecta
+                    echo json_encode(['mensaje' => 'Contraseña incorrecta']);
+                }
+            } else {
+                echo json_encode(['mensaje' => 'Empleado no encontrado']);
+            }
+        } catch (PDOException $e) {
+            echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }
 
 
