@@ -69,6 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo json_encode(['mensaje' => 'Cédula del empleado no proporcionada']);
                 }
                 break;
+            case 'verificarEmpleado':
+                ModeloAdministrador::verificarEmpleado();
+                break;
         }
     } else {
         echo json_encode(['mensaje' => 'Acción no especificada en GET']);
