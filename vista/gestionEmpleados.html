@@ -145,6 +145,29 @@
         }
       });
 
+// Enviar formulario de registro o edición de empleado
+$("#registroEmpleado").on("submit", function (event) {
+        event.preventDefault();
+        var formData = $(this).serialize();
+        var accion = $(this).data("accion");
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/app-Alquiler-Autos/backend/apiRest.php",
+            data: formData + "&accion=" + (accion === "editar" ? "editarEmpleado" : "registrarEmpleado"),
+            dataType: "json",
+            success: function (respuesta) {
+                alert(respuesta.mensaje);
+                cargarDatos(); // Recargar datos después de registrar o editar
+                $("#modalEmpleado").hide();
+            },
+            error: function (xhr) {
+                alert("Hubo un error al " + (accion === "editar" ? "editar" : "registrar") + " el empleado.");
+            },
+        });
+    });
+
+
 
     });
       
