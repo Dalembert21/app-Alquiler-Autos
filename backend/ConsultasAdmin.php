@@ -122,6 +122,23 @@ class ModeloAdministrador {
             echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
         }
     }
+
+    public static function seleccionarEmpleados(){
+        try{
+    
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+            $sql = "SELECT cedula_Empleado, nombre_Empleado,apellido_Empleado, correo_Empleado, rol FROM empleados";
+            $datos = $con->prepare($sql);
+            $datos->execute();
+            $empleados = $datos->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($empleados);
+        
+        }catch(PDOException $e){
+            echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
+        
+        }
+    }
 }
 
 
