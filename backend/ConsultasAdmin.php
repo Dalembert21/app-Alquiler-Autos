@@ -241,6 +241,24 @@ class ModeloAdministrador {
             echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
         }
     }
+
+    public static function obtenerRoles() {
+        try {
+            // Establecer la conexión a la base de datos
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+    
+            // Consulta SQL para obtener los roles
+            $sql = "SELECT DISTINCT rol FROM empleados";
+            $stmt = $con->prepare($sql);
+            $stmt->execute();
+    
+            // Devolver los roles en formato JSON
+            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        } catch (PDOException $e) {
+            echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }
 
 
