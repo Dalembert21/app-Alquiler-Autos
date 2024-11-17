@@ -167,7 +167,43 @@ $("#registroEmpleado").on("submit", function (event) {
         });
     });
 
-
+ // Buscar empleado por cédula
+ $("#buscarEmpleadoBtn").on("click", function () {
+            var cedula = $("#searchInput").val().trim();
+            if (cedula) {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/app-Alquiler-Autos/backend/apiRest.php",
+                    data: { accion: "buscarEmpleadoPorCedula", cedula_Empleado: cedula },
+                    dataType: "json",
+                    success: function (respuesta) {
+                $("#tablaUsuarios").empty(); // Limpiar la tabla antes de cargar los nuevos resultados
+                if (respuesta.mensaje) {
+                    $("#tablaUsuarios").append(`<tr><td colspan="6">${respuesta.mensaje}</td></tr>`);
+                } else {
+                    var fila = `<tr>
+                        <td>${respuesta.cedula_Empleado}</td>
+                        <td>${respuesta.nombre_Empleado}</td>
+                        <td>${respuesta.apellido_Empleado}</td>
+                        <td>${respuesta.correo_Empleado}</td>
+                        <td>${respuesta.rol}</td>
+                        <td>
+                            <button class="editar-btn" data-id="${respuesta.cedula_Empleado}"><i class="fa-solid fa-user-pen"></i></button>
+                            <button class="eliminar-btn" data-id="${respuesta.cedula_Empleado}"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>`;
+                    $("#tablaUsuarios").append(fila); // Agregar los datos a la tabla
+                }
+            },
+            error: function (xhr) {
+                console.error("Error al realizar la búsqueda:", xhr.responseText);
+            }
+                });
+            } else {
+                cargarDatos();
+            }
+        });
+        
 
     // Función para cargar los datos de los empleados
     function cargarDatos() {
