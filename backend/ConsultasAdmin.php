@@ -139,6 +139,32 @@ class ModeloAdministrador {
         
         }
     }
+
+    public static function obtenerEmpleado($cedulaEmpleado) {
+        try {
+            // Establecer la conexión a la base de datos
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+    
+            // Consulta SQL para obtener los datos del empleado
+            $sql = "SELECT cedula_Empleado, nombre_Empleado, apellido_Empleado, correo_Empleado, clave_Empleado, rol 
+                    FROM empleados WHERE cedula_Empleado = ?";
+            
+            $datos = $con->prepare($sql);
+            $datos->execute([$cedulaEmpleado]);
+    
+            // Verificar si se encontró el empleado
+            $empleado = $datos->fetch(PDO::FETCH_ASSOC);
+            
+            if ($empleado) {
+                echo json_encode($empleado);  // Devolver los datos del empleado
+            } else {
+                echo json_encode(['mensaje' => 'Empleado no encontrado']);
+            }
+        } catch (PDOException $e) {
+            echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }
 
 
