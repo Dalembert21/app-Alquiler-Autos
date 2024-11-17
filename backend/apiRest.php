@@ -53,6 +53,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Acción para seleccionar todos los empleados
                 ModeloAdministrador::seleccionarEmpleados();
                 break;
+            case 'obtenerEmpleado':
+                // Acción para obtener un empleado por cédula
+                if (isset($_GET['cedula_Empleado'])) {
+                    $cedula = $_GET['cedula_Empleado'];
+                    ModeloAdministrador::obtenerEmpleado($cedula);
+                } else {
+                    echo json_encode(['mensaje' => 'Cédula del empleado no proporcionada']);
+                }
+                break;
         }
     } else {
         echo json_encode(['mensaje' => 'Acción no especificada en GET']);
