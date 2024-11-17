@@ -62,6 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo json_encode(['mensaje' => 'Cédula del empleado no proporcionada']);
                 }
                 break;
+            case 'buscarEmpleadoPorCedula':
+                if (isset($_GET['cedula_Empleado'])) {
+                    ModeloAdministrador::buscarEmpleadoPorCedula($_GET['cedula_Empleado']);
+                } else {
+                    echo json_encode(['mensaje' => 'Cédula del empleado no proporcionada']);
+                }
+                break;
         }
     } else {
         echo json_encode(['mensaje' => 'Acción no especificada en GET']);
