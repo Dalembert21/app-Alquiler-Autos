@@ -169,6 +169,41 @@ $("#registroEmpleado").on("submit", function (event) {
 
 
 
+    // Función para cargar los datos de los empleados
+    function cargarDatos() {
+     $("#tablaUsuarios").empty(); // Limpiar la tabla antes de cargar los nuevos datos
+     $.ajax({
+         type: "GET",
+         url: "http://localhost/app-Alquiler-Autos/backend/apiRest.php", // Ruta de la API
+         data: {  accion: "seleccionarEmpleado"}, 
+         dataType: "json",
+         success: function (respuesta) {
+            
+             if (respuesta.length > 0) {
+                 respuesta.forEach(function (element) {
+                     var fila = `<tr>
+                         <td>${element.cedula_Empleado}</td>
+                         <td>${element.nombre_Empleado}</td>
+                         <td>${element.apellido_Empleado}</td>
+                         <td>${element.correo_Empleado}</td>
+                         <td>${element.rol}</td>
+                         <td>
+                             <button class="editar-btn" data-id="${element.cedula_Empleado}"><i class="fa-solid fa-user-pen"></i></button>
+                             <button class="eliminar-btn" data-id="${element.cedula_Empleado}"><i class="fas fa-trash-alt"></i></button>
+                         </td>
+                     </tr>`;
+                     $("#tablaUsuarios").append(fila); // Agregar los datos a la tabla
+                 });
+             } else {
+                 $("#tablaUsuarios").append('<tr><td colspan="6">No hay usuarios registrados</td></tr>');
+             }
+         },
+         error: function (xhr) {
+             console.error("Error al cargar los datos:", xhr.responseText);
+         }
+     });
+ }
+
     });
       
 </script>
