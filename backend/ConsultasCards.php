@@ -219,5 +219,109 @@ class ModeloVehiculos {
             echo json_encode(['mensaje' => 'Método HTTP no permitido.']);
         }
     }
+
+    public static function editarVehiculo() {
+        // Comprobar si la solicitud es de tipo POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          try {
+              $objetoConexion = new Conexion();
+              $con = $objetoConexion->conectar();
+              
+              // Verificar si las claves necesarias existen en la solicitud
+              $matriculaVehiculo = isset($_POST['matriculaVehiculo']) ? $_POST['matriculaVehiculo'] : null;
+              $tituloVehiculo = isset($_POST['tituloVehiculo']) ? $_POST['tituloVehiculo'] : null;
+              $marcaVehiculo = isset($_POST['marcaVehiculo']) ? $_POST['marcaVehiculo'] : null;
+              $modeloVehiculo = isset($_POST['modeloVehiculo']) ? $_POST['modeloVehiculo'] : null;
+              $anioVehiculo = isset($_POST['anioVehiculo']) ? $_POST['anioVehiculo'] : null;
+              $colorVehiculo = isset($_POST['colorVehiculo']) ? $_POST['colorVehiculo'] : null;
+              $combustibleVehiculo = isset($_POST['combustibleVehiculo']) ? $_POST['combustibleVehiculo'] : null;
+              $pasajerosVehiculo = isset($_POST['pasajerosVehiculo']) ? $_POST['pasajerosVehiculo'] : null;
+              $transmisionVehiculo = isset($_POST['transmisionVehiculo']) ? $_POST['transmisionVehiculo'] : null;
+              $precioVehiculo = isset($_POST['precioVehiculo']) ? $_POST['precioVehiculo'] : null;
+              $tipoVehiculo = isset($_POST['tipoVehiculo']) ? $_POST['tipoVehiculo'] : null;
+              $caracteristicas = isset($_POST['caracteristicas']) ? $_POST['caracteristicas'] : null;
+
+              // Verificar si la matrícula del vehículo está definida
+              if (!$matriculaVehiculo) {
+                  echo json_encode(['mensaje' => 'La matrícula del vehículo es obligatoria.']);
+                  return;
+              }
+              
+              // Aquí puedes continuar con la actualización, utilizando los valores que ahora están verificados
+              // Puedes incluir una validación adicional si alguna de las variables necesarias no está presente
+              
+              // Si la imagen es parte de la actualización
+              if (isset($_FILES['imagen_vehiculo']) && $_FILES['imagen_vehiculo']['error'] == 0) {
+                  // Obtener la extensión de la imagen
+                  $imageFileType = strtolower(pathinfo($_FILES['imagen_vehiculo']['name'], PATHINFO_EXTENSION));
+                  
+                  // Verificar si la extensión es una de las permitidas
+                  $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'jfif'];
+                  if (!in_array($imageFileType, $allowedExtensions)) {
+                      echo json_encode(['mensaje' => 'Formato de imagen no permitido.']);
+                      return;
+                  }
+
+                  // Generar un nombre único para la imagen
+                  $imageName = uniqid('vehiculo_') . '.' . $imageFileType;
+                  $targetDirectory = "../fotosVehiculos/";
+                  $targetFile = $targetDirectory . $imageName;
+                  move_uploaded_file($_FILES['imagen_vehiculo']['tmp_name'], $targetFile);
+                  $imagenVehiculo = $imageName;
+              } else {
+                  // Si no se sube una nueva imagen, podrías mantener la imagen anterior
+                  // Esto podría depender de tu lógica de negocio
+                  $imagenVehiculo = isset($_POST['imagenActual']) ? $_POST['imagenActual'] : null;
+              }
+
+              // Ahora, realiza la actualización en la base de datos
+              // Asegúrate de tener una transacción o una consulta adecuada
+
+              $sqlUpdateVehiculo = "UPDATE vehiculos SET 
+                  titulo_vehiculo = :titulo,
+                  imagen_vehiculo = :imagen,
+                  año_vehiculo = :anio,
+                  color_vehiculo = :color,
+                  combustible_vehiculo = :combustible,
+                  pasajeros_vehiculo = :pasajeros,
+                  transmision_vehiculo = :transmision,
+                  precio_vehiculo = :precio,
+                  id_tipo_vehiculo = :tipo
+                  WHERE matricula_vehiculo = :matricula";
+              
+              $stmt = $con->prepare($sqlUpdateVehiculo);
+              $stmt->bindParam(':matricula', $matriculaVehiculo);
+              $stmt->bindParam(':titulo', $tituloVehiculo);
+              $stmt->bindParam(':imagen', $imagenVehiculo);
+              $stmt->bindParam(':anio', $anioVehiculo);
+              $stmt->bindParam(':color', $colorVehiculo);
+              $stmt->bindParam(':combustible', $combustibleVehiculo);
+              $stmt->bindParam(':pasajeros', $pasajerosVehiculo);
+              $stmt->bindParam(':transmision', $transmisionVehiculo);
+              $stmt->bindParam(':precio', $precioVehiculo);
+              $stmt->bindParam(':tipo', $tipoVehiculo);
+              
+              $stmt->execute();
+               // Actualizar la tabla 'detalle_vehiculo'
+          $sqlDetalle = "UPDATE detalle_vehiculo SET 
+          marca_vehiculo = :marca,
+          modelo_vehiculo = :modelo,
+          caracteristicas = :caracteristicas
+      WHERE matricula_vehiculo = :matricula";
+
+      $stmtDetalle = $con->prepare($sqlDetalle);
+      $stmtDetalle->bindParam(':marca', $marcaVehiculo);
+      $stmtDetalle->bindParam(':modelo', $modeloVehiculo);
+      $stmtDetalle->bindParam(':caracteristicas', $caracteristicas);
+      $stmtDetalle->bindParam(':matricula', $matriculaVehiculo);
+      $stmtDetalle->execute();
+              // Si todo es exitoso, devolver un mensaje
+              echo json_encode(['mensaje' => 'Vehículo actualizado exitosamente']);
+          } catch (Exception $e) {
+              echo json_encode(['mensaje' => 'Error al actualizar vehículo: ' . $e->getMessage()]);
+          }
+      }
+  }
+  
 }
 ?>
