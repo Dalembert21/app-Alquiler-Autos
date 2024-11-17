@@ -38,9 +38,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'editarEmpleado':
                 ModeloAdministrador::editarEmpleado();
                 break;
+                // Otras acciones en POST
+            default:
+                echo json_encode(['mensaje' => 'Acción no válida']);
+                break;
         }
     } else {
         echo json_encode(['mensaje' => 'No se ha especificado ninguna acción']);
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET['accion'])) {
+        switch ($_GET['accion']) {
+            case 'seleccionarEmpleado':
+                // Acción para seleccionar todos los empleados
+                ModeloAdministrador::seleccionarEmpleados();
+                break;
+        }
+    } else {
+        echo json_encode(['mensaje' => 'Acción no especificada en GET']);
     }
 } else {
     echo json_encode(['mensaje' => 'Método no permitido']);
