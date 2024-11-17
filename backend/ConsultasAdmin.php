@@ -165,6 +165,40 @@ class ModeloAdministrador {
             echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
         }
     }
+
+    public static function buscarEmpleadoPorCedula() {
+        try {
+            // Verificar que se reciba la cédula del empleado desde la URL
+            if (!isset($_GET['cedula_Empleado'])) {
+                echo json_encode(['mensaje' => 'Debe proporcionar la cédula del empleado']);
+                return;
+            }
+            // Asignar la cédula del empleado a la variable
+            $cedulaEmpleado = $_GET['cedula_Empleado'];
+        
+            // Establecer la conexión a la base de datos
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+        
+            // Consulta SQL para buscar al empleado por cédula
+            $sql = "SELECT cedula_Empleado, nombre_Empleado, apellido_Empleado, correo_Empleado, clave_Empleado, rol 
+                    FROM empleados WHERE cedula_Empleado = ?";
+        
+            $datos = $con->prepare($sql);
+            $datos->execute([$cedulaEmpleado]);
+        
+            // Verificar si se encontró el empleado
+            $empleado = $datos->fetch(PDO::FETCH_ASSOC);
+        
+            if ($empleado) {
+                echo json_encode($empleado);  // Devolver los datos del empleado
+            } else {
+                echo json_encode(['mensaje' => 'Empleado no encontrado']);
+            }
+        } catch (PDOException $e) {
+            echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }
 
 
