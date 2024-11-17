@@ -72,6 +72,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'verificarEmpleado':
                 ModeloAdministrador::verificarEmpleado();
                 break;
+            case 'obtenerRoles':
+                // Acción para obtener los roles
+                ModeloAdministrador::obtenerRoles();
+                break;
+            default:
+                echo json_encode(['mensaje' => 'Acción no válida o no especificada en GET']);
+                break;
         }
     } else {
         echo json_encode(['mensaje' => 'Acción no especificada en GET']);
