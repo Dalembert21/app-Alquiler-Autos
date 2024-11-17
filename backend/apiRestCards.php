@@ -10,6 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Registrar un vehículo
             ModeloVehiculos::registrarVehiculo();
             break;
+        case 'editarVehiculo':
+            // Editar un vehículo
+            ModeloVehiculos::editarVehiculo();
+            break;
         default:
             echo json_encode(['mensaje' => 'Acción no válida']);
     }
