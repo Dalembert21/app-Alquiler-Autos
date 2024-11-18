@@ -354,6 +354,55 @@ class ModeloVehiculos {
           }
       }
   }
+
+  public static function obtenerVehiculoPorMatricula($matriculaVehiculo) {
+    try {
+        $objetoConexion = new Conexion();
+        $con = $objetoConexion->conectar();
+
+        $sql = "SELECT 
+            v.matricula_vehiculo,
+            v.titulo_vehiculo,
+            v.imagen_vehiculo,
+            v.año_vehiculo,
+            v.color_vehiculo,
+            v.combustible_vehiculo,
+            v.pasajeros_vehiculo,
+            v.transmision_vehiculo,
+            v.precio_vehiculo,
+            t.tipo_vehiculo,
+            d.estado_disponibilidad,
+            det.marca_vehiculo,
+            det.modelo_vehiculo,
+            det.caracteristicas
+        FROM 
+            vehiculos v
+        JOIN 
+            tipo_vehiculos t ON v.id_tipo_vehiculo = t.id_tipo_vehiculo
+        JOIN 
+            disponibilidad_vehiculo d ON v.id_disponibilidad_pertenece = d.id_disponibilidad_vehiculo
+        JOIN 
+            detalle_vehiculo det ON v.matricula_vehiculo = det.matricula_vehiculo
+        WHERE 
+            v.matricula_vehiculo = :matricula";
+
+        $stmt = $con->prepare($sql);
+        $stmt->bindParam(':matricula', $matriculaVehiculo);
+        $stmt->execute();
+
+        // Comprobamos si se encontró el vehículo
+        $vehiculo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($vehiculo) {
+            echo json_encode($vehiculo);
+        } else {
+            echo json_encode(['mensaje' => 'Vehículo no encontrado']);
+        }
+    } catch (PDOException $e) {
+        // Se mejoró la información de error
+        echo json_encode(['mensaje' => 'Error al obtener vehículo: ' . $e->getMessage()]);
+    }
+}
   
 }
 ?>
