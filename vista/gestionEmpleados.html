@@ -296,7 +296,24 @@ $(document).on("click", ".eliminar-btn", function () {
         }
     });
 
-
+// Función para cargar los roles dinámicamente
+function cargarRoles() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/app-Alquiler-Autos/backend/apiRest.php",
+            data: { accion: "obtenerRoles" },
+            dataType: "json",
+            success: function (roles) {
+                $("#rol").empty();
+                roles.forEach(function (rol) {
+                    $("#rol").append(`<option value="${rol.rol}">${rol.rol}</option>`);
+                });
+            },
+            error: function (xhr) {
+                console.error("Error al cargar los roles:", xhr.responseText);
+            },
+        });
+    }
 
     });
       
