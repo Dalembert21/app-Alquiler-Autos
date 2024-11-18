@@ -39,10 +39,6 @@ body {
     gap: 20px;
 }
 
-.header-right ul li {
-    display: inline-block;
-}
-
 .header-right ul li a {
     text-decoration: none;
     color: white;
@@ -87,7 +83,7 @@ body {
     text-align: left;
 }
 
-.admin-card h3 {
+.admin-card h3, h3 {
     font-size: 20px;
     color: #333;
 }
@@ -174,40 +170,38 @@ body {
     margin-top: 40px;
     background-color: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .usuarios-lista table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 16px;
+    color: #333;
 }
 
 .usuarios-lista th,
 .usuarios-lista td {
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
     text-align: left;
 }
 
 .usuarios-lista th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-.usuarios-lista tr:hover {
-    background-color: #f1f1f1;
-}
-
-.footer-section {
     background-color: #333;
     color: white;
-    text-align: center;
-    padding: 15px;
-    width: 100%;
-    margin-top: auto; /* Esto asegura que el footer se coloque al final */
-    position: relative; /* Cambiado a relative */
+    font-weight: bold;
+}
+.usuarios-lista td {
+    background-color: #f9f9f9;
 }
 
+.usuarios-lista tr:hover td {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
 
 /* Para el botón dentro de la tabla */
 .usuarios-lista button {
