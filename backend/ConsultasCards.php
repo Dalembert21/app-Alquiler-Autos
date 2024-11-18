@@ -83,6 +83,38 @@ class ModeloVehiculos {
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    public static function eliminarVehiculo($matriculaVehiculo) {
+        try {
+            $objetoConexion = new Conexion();
+            $con = $objetoConexion->conectar();
+    
+            // Iniciar la transacción para asegurar que ambas eliminaciones se hagan correctamente
+            $con->beginTransaction();
+    
+            // Eliminar el detalle del vehículo en la tabla 'detalle_vehiculo'
+            $sqlDetalle = "DELETE FROM detalle_vehiculo WHERE matricula_vehiculo = ?";
+            $stmtDetalle = $con->prepare($sqlDetalle);
+            $stmtDetalle->bindParam(1, $matriculaVehiculo);  // Asegúrate de usar el índice 1
+            $stmtDetalle->execute();
+    
+            // Eliminar el vehículo en la tabla 'vehiculos'
+            $sqlVehiculo = "DELETE FROM vehiculos WHERE matricula_vehiculo = ?";
+            $stmtVehiculo = $con->prepare($sqlVehiculo);
+            $stmtVehiculo->bindParam(1, $matriculaVehiculo);  // Asegúrate de usar el índice 1
+            $stmtVehiculo->execute();
+    
+            // Confirmar la transacción
+            $con->commit();
+    
+            // Responder con éxito
+            echo json_encode(['mensaje' => 'Vehículo eliminado exitosamente']);
+        } catch (PDOException $e) {
+            // En caso de error, hacer rollback de la transacción
+            $con->rollBack();
+            echo json_encode(['mensaje' => 'Error al eliminar vehículo: ' . $e->getMessage()]);
+        }
+    }
+
     public static function registrarVehiculo() {
         // Comprobar si la solicitud es de tipo POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
