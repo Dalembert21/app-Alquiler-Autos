@@ -272,6 +272,31 @@ $("#registroEmpleado").on("submit", function (event) {
         });
     });
     
+// Función para eliminar un empleado
+$(document).on("click", ".eliminar-btn", function () {
+        var cedula = $(this).data("id");
+
+        if (confirm("¿Estás seguro de que deseas eliminar este empleado?")) {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/app-Alquiler-Autos/backend/apiRest.php",
+                data: {
+                    accion: "eliminarEmpleado",
+                    cedula_Empleado: cedula,
+                },
+                dataType: "json",
+                success: function (respuesta) {
+                    alert(respuesta.mensaje);
+                    cargarDatos();
+                },
+                error: function (xhr) {
+                    alert("Hubo un error al eliminar el empleado.");
+                },
+            });
+        }
+    });
+
+
 
     });
       
