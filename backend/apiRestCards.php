@@ -14,6 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Editar un vehículo
             ModeloVehiculos::editarVehiculo();
             break;
+        case 'eliminarVehiculo':
+            if (isset($_POST['matricula_vehiculo'])) {
+                $matriculaVehiculo = $_POST['matricula_vehiculo'];
+                ModeloVehiculos::eliminarVehiculo($matriculaVehiculo);
+            } else {
+                echo json_encode(['mensaje' => 'Falta la matrícula del vehículo']);
+            }
+            break;
         default:
             echo json_encode(['mensaje' => 'Acción no válida']);
     }
