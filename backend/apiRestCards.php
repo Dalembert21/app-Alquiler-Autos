@@ -42,7 +42,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'obtenerCombustibles':
             ModeloVehiculos::obtenerCombustibles();
             break;
+        case 'obtenerVehiculoPorMatricula':
+            // Verificamos que se haya pasado el parámetro 'matricula_vehiculo'
+            if (isset($_GET['matricula_vehiculo'])) {
+                $matriculaVehiculo = $_GET['matricula_vehiculo'];
+                ModeloVehiculos::obtenerVehiculoPorMatricula($matriculaVehiculo);
+            } else {
+                echo json_encode(['mensaje' => 'Falta la matrícula del vehículo']);
+            }
+            break;
         default:
             echo json_encode(['mensaje' => 'Acción no válida']);
+            break;
     }
+} else {
+    echo json_encode(['mensaje' => 'Método no permitido']);
 }
