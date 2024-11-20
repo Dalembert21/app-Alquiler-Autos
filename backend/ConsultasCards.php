@@ -47,7 +47,8 @@ class ModeloVehiculos {
     public static function obtenerTiposVehiculos() {
         $objetoConexion = new Conexion();
         $con = $objetoConexion->conectar();
-        $sql = "SELECT DISTINCT tipo_vehiculo FROM tipo_vehiculos";
+        // Modificamos la consulta para obtener el id_tipo_vehiculo y el nombre tipo_vehiculo
+        $sql = "SELECT id_tipo_vehiculo, tipo_vehiculo FROM tipo_vehiculos";
         $stmt = $con->prepare($sql);
         $stmt->execute();
         echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
